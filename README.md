@@ -11,6 +11,4 @@ Glowing Enigma REST API code.
 2. Vagrant ssh
 3. vagrant@ubuntu-bionic:~$ cd /vagrant/
 4. vagrant@ubuntu-bionic:/vagrant$ source ~/env/bin/activate
-5. (env) vagrant@ubuntu-bionic:/vagrant$ python manage.py runserver 0.0.0.0:8000
-
-If the Django dev server gets stuck in a restarting loop, exit the Vagrant box and start from step one.
+5. (env) vagrant@ubuntu-bionic:/vagrant$ python manage.py runserver --noreload 0.0.0.0:8000
