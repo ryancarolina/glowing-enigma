@@ -23,7 +23,7 @@ class HelloConsulView(APIView):
         """Make a GET request against Consul Cluster"""
 
         if request.method == 'GET':
-            r = requests.get('https://demo.consul.io/ui/dc1/services', params=request.GET)
+            r = requests.get('https://demo.consul.io/v1/agent/members', params=request.GET)
 
         if r.status_code == 200:
             return Response({'message': 'Hello, This is Consul!', 'response': r})
