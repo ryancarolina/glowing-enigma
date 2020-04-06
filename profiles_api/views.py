@@ -12,6 +12,23 @@ from profiles_api import serializers
 from profiles_api import models
 from profiles_api import permissions
 
+import requests
+
+
+class HelloConsulView(APIView):
+    """Test Consul API Call"""
+    serializer_class = serializers.HelloSerializer
+
+    def get(self, request, format=None):
+        """Make a GET request against Consul Cluster"""
+
+        if request.method == 'GET':
+            r = requests.get('https://demo.consul.io/ui/dc1/services', params=request.GET)
+
+        if r.status_code == 200:
+            return Response({'message': 'Hello, This is Consul!', 'response': r})
+        return Response({'message': 'GET failed!'})
+
 
 class HelloApiView(APIView):
     """Test API View"""
