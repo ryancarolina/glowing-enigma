@@ -73,6 +73,21 @@ class HelloApiView(APIView):
         return Response({'method': 'DELETE'})
 
 
+class HelloConsulViewSet(viewsets.ViewSet):
+    """Test Consul API Call"""
+    serializer_class = serializers.HelloSerializer
+
+    def list(self, request):
+        """Make a GET request against Consul Cluster"""
+
+        if request.method == 'GET':
+            r = requests.get('https://demo.consul.io/v1/agent/members', params=request.GET)
+
+        if r.status_code == 200:
+            return Response({'message': 'Hello, This is Consul!','notes': 'This endpoint returns the members the agent sees in the cluster gossip pool. Due to the nature of gossip, this is eventually consistent: the results may differ by agent. The strongly consistent view of nodes is instead provided by /v1/catalog/nodes.', 'response': r})
+        return Response({'message': 'GET failed!'})
+
+
 class HelloViewSet(viewsets.ViewSet):
     """Test API ViewSet"""
     serializer_class = serializers.HelloSerializer
