@@ -30,6 +30,44 @@ class HelloConsulView(APIView):
         return Response({'message': 'GET failed!'})
 
 
+class TerraformView(APIView):
+    """Trigger TF file execution"""
+
+    def get(self, request):
+
+        jenkins_job_name = "single-server"
+        Jenkins_url = "http://ec2-3-88-11-105.compute-1.amazonaws.com:8080"
+        jenkins_user = "Ryan"
+        jenkins_pwd = "Password1234"
+        buildWithParameters = False
+        jenkins_params = {'token': 'enigma',
+                          'result2':'success',
+                          'result1': 'success'}
+
+        try:
+        	auth= (jenkins_user, jenkins_pwd)
+        	crumb_data= requests.get("{0}/crumbIssuer/api/json".format(Jenkins_url),auth = auth,headers={'content-type': 'application/json'})
+        	if str(crumb_data.status_code) == "200":
+
+        		if buildWithParameters:
+        			data = requests.get("{0}/job/{1}/buildWithParameters".format(Jenkins_url,jenkins_job_name),auth=auth,params=jenkins_params,headers={'content-type': 'application/json','Jenkins-Crumb':crumb_data.json()['crumb']})
+        		else:
+        			data = requests.get("{0}/job/{1}/build".format(Jenkins_url,jenkins_job_name),auth=auth,params=jenkins_params,headers={'content-type': 'application/json','Jenkins-Crumb':crumb_data.json()['crumb']})
+
+        		if str(data.status_code) == "201":
+        		 	return Response({'message': 'Jenkins job started', 'response': data})
+        		else:
+        		 	return Response({'message': 'Jenkins job failed to start', 'response': data})
+
+        	else:
+        		return Response({'message': 'failed to fetch Jenkins-Crumb', 'response': data})
+        		raise
+
+        except Exception as e:
+        	print ("Failed triggering the Jenkins job")
+        	print ("Error: " + str(e))
+
+
 class HelloApiView(APIView):
     """Test API View"""
     serializer_class = serializers.HelloSerializer

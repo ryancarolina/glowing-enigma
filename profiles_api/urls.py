@@ -16,4 +16,5 @@ urlpatterns = [
     path('login/', views.UserLoginApiView.as_view()),
     path('', include(router.urls)),
     path('hello-consul/', views.HelloConsulView.as_view()),
+    path('build-terraform/', views.TerraformView.as_view()),
 ]

@@ -29,3 +29,6 @@ The deployment is for an Ubuntu 18.01 LTS EC2. You will need to ssh into your EC
 2. curl -sL https://raw.githubusercontent.com/ryancarolina/glowing-enigma/master/deploy/setup.sh | sudo bash -
 3. After any changes are pushed to the repo, run the update.sh to pick up the changes on the EC2 instance.
 4. sudo sh ./deploy/update.sh
+
+http://ec2-3-88-11-105.compute-1.amazonaws.com:8080/job/single-server/build?token=enigma
+11ef236755be750de23ab7565decb9695e
