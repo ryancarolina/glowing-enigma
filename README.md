@@ -10,9 +10,11 @@ After you have cloned into the project cd into the dir with the Vagrant file, th
 
 1. Vagrant up
 2. Vagrant ssh
-3. vagrant@ubuntu-bionic:~$ cd /vagrant/
-4. vagrant@ubuntu-bionic:/vagrant$ source ~/env/bin/activate
-5. (env) vagrant@ubuntu-bionic:/vagrant$ python manage.py runserver --noreload 0.0.0.0:8000
+3. cd /vagrant/
+4. python -m venv ~/env
+5. source ~/env/bin/activate
+6. pip install -r requirements.txt
+7. python manage.py runserver --noreload 0.0.0.0:8000
 
 ### Pre-deploy config
 
