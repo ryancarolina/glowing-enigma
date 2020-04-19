@@ -28,4 +28,5 @@ The deployment is for an Ubuntu 18.01 LTS EC2. You will need to ssh into your EC
 1. Download and run the setup.sh via curl from the repo.
 2. curl -sL https://raw.githubusercontent.com/ryancarolina/glowing-enigma/master/deploy/setup.sh | sudo bash -
 3. After any changes are pushed to the repo, run the update.sh to pick up the changes on the EC2 instance.
-4. sudo sh ./deploy/update.sh
+4. The update.sh script needs to be ran after local changes are made as well to restart the API server.
+5. /usr/local/apps/profiles-rest-api$ sudo sh ./deploy/update.sh 

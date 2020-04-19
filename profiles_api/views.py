@@ -37,10 +37,10 @@ class TerraformView(APIView):
 
         jenkins_job_name = "single-server"
         Jenkins_url = "http://ec2-3-88-11-105.compute-1.amazonaws.com:8080"
-        jenkins_user = "YourUserHere"
-        jenkins_pwd = "YourPassHere"
+        jenkins_user = "UsernameHere"
+        jenkins_pwd = "PasswordHere"
         buildWithParameters = False
-        jenkins_params = {'token': 'YourTokenHere',
+        jenkins_params = {'token': 'TokenHere',
                           'result2':'success',
                           'result1': 'success'}
 
